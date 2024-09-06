@@ -12,11 +12,10 @@ document.getElementById('btnShowOrangeDiv').addEventListener('click', function()
 function modifyDOM() {
   const version = chrome.runtime.getManifest().version;
   const div = document.createElement('div');
-  div.textContent = `DOM modified by Fresh Chrome Extension boilerplate ${version} (I am in "popup.js")`;
+  div.textContent = `Extract the text and make it more readable for dyslectic people ${version}`;
   div.style.cssText =
     'background-color: orange; color: black; font-weight: bold; padding: 10px; width: 100%; box-sizing: border-box;';
   document.body.insertAdjacentElement('afterbegin', div);
-  console.log('Action executed from popup!');
 
   // Extract and format text from readable elements
   const readableElements = document.body.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, li');
@@ -34,42 +33,72 @@ function modifyDOM() {
       case 'h1':
         newElement.style.cssText = `
           font-family: 'Lora', serif;
-          font-size: 2.5rem;
+          font-size: 3.5rem;
           line-height: 1.2;
-          margin-bottom: 1rem;
+          margin-bottom: 1.5rem;
+          color: #333;
+          font-weight: 400;
+          letter-spacing: -0.02em;
         `;
         break;
       case 'h2':
         newElement.style.cssText = `
           font-family: 'Lora', serif;
-          font-size: 2rem;
+          font-size: 2.8rem;
           line-height: 1.3;
+          margin-top: 2.5rem;
+          margin-bottom: 1.5rem;
+          color: #444;
+          font-weight: 400;
+          letter-spacing: -0.01em;
+        `;
+        break;
+      case 'h3':
+        newElement.style.cssText = `
+          font-family: 'Lora', serif;
+          font-size: 2.2rem;
+          line-height: 1.4;
           margin-top: 2rem;
           margin-bottom: 1rem;
+          color: #555;
+          font-weight: 600;
         `;
         break;
       case 'p':
         newElement.style.cssText = `
           font-family: 'Lora', serif;
-          font-size: 1.125rem;
-          line-height: 1.6;
-          margin-bottom: 1rem;
+          font-size: 1.4rem;
+          line-height: 1.8;
+          margin-bottom: 1.5rem;
+          color: #333;
+          letter-spacing: 0.01em;
         `;
         break;
       case 'a':
         newElement.style.cssText = `
           font-family: 'Lora', serif;
-          color: #326891;
+          color: #1a5f7a;
           text-decoration: none;
-          border-bottom: 1px solid #326891;
+          border-bottom: 2px solid #1a5f7a;
+          font-weight: 600;
+          transition: color 0.3s, border-color 0.3s;
         `;
+        newElement.addEventListener('mouseover', () => {
+          newElement.style.color = '#0f3c4d';
+          newElement.style.borderBottomColor = '#0f3c4d';
+        });
+        newElement.addEventListener('mouseout', () => {
+          newElement.style.color = '#1a5f7a';
+          newElement.style.borderBottomColor = '#1a5f7a';
+        });
         break;
       default:
         newElement.style.cssText = `
           font-family: 'Lora', serif;
-          font-size: 1rem;
-          line-height: 1.5;
-          margin-bottom: 0.5rem;
+          font-size: 1.2rem;
+          line-height: 1.6;
+          margin-bottom: 1rem;
+          color: #444;
         `;
     }
     
